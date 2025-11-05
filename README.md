@@ -10,18 +10,45 @@ Perplexity for projects ideas
 Progress:  
 Day 1:  
 Project 1 - Mad Libs Word Game  
-    I started by greating the user by using print comands, after i went into to collecting words from the user, for this I defined each word as a variable and used a input to get the word from the user. after wars i used story= f"""...""" and i wrote the stpry using the variables now defined to develop the story. after wards i use print to display the story. After this I used gemini code assist to learn how to save the sotry as file in the pc.  
-      
+    I started by outlining the goal in comments: to ask a user for random words and use them to build a funny story. The steps I planned were: Greet User, Request Words, Create Story, Display Story, and an optional Save Story step.  
+    First, I used print statements to welcome the user, explain the game, and print a separator line ("-"* 90).  
+    Next, to request the words, I used a series of input functions. I prompted the user for various types of words (like nouns, adjectives, verbs, etc.) and stored each response in a dedicated variable, such as noun1, adjective1, verb, body_part, and so on.  
+    Once I had all the user's words, I created the story itself. I used a multi-line f-string for this. This allowed me to write out the story template and embed the user's variables (like {noun1} and {adjective2}) directly into the text. This complete story was stored in the story variable.  
+    After the story was created, I printed another separator line and then printed the story variable, showing the user their finished, funny story.  
+    For the final, optional step, I wanted to let the user save their creation. I used input to ask if they wanted to save the story and stored their answer in save_story, using .lower() to make the check case-insensitive.  
+    I used an if statement to check if save_story was equal to "yes". If it was, I prompted the user for a file_name using input. Then, I used a with open(file_name, 'w') as file: block. This opens the specified file in write mode ('w'). Inside this block, I used file.write(story) to write the contents of the story variable into the file. Finally, I printed a confirmation message showing them where the file was saved.  
+    At the very end, I just printed a "Thanks for playing!" message to exit the program.  
+    
 Project 2 - Number guessing game  
-    I Started by greating the user!  
-    I used the import random to be able to get a random number for us to find, Afterwards i defined the secret_number as a randint (random interger) between 1 and 100. Then I prompt the user to guess a number in a certain number of tries.
-    Then I used a while loop as long the numbers of tires was under 10. Then i used a if statment to see if the number was correct, if it was I would give the user the congrats message and break the loop, if its higher or lower it says to try higher or lower and the number of tries left. then i use a else if it wasnt found in under 10 tries. that leads to the game over screen!  
+   I started by outlining the goal in comments: the computer would pick a number from 1 to 100, and the user had to guess it within 10 tries.  
+    First, I had to import random so the computer could pick a secret number.  
+    Then, I used print statements to greet the user, explain the game, and print a separator line ("="* 90) to make it look clean.  
+    To set up the game, I used random.randint(1, 100) to get the secret_number and stored it in a variable. I also created two variables to control the game: attempts (which I set to 0) and max_attempts (which I set to 10).  
+    To handle all the guesses, I put the main logic inside a while loop. This loop keeps running as long as the attempts variable is less than max_attempts.  
+    Inside this loop, I immediately started a try...except block. I did this to make sure the program wouldn't crash if the user entered text instead of a number.  
+    Inside the try block, I used input to ask the user for their guess. I used int() to convert their answer into a number and store it in the guess variable. Right after, I added 1 to the attempts counter.  
+    I then added a quick if statement to validate the input, checking if the guess was less than 1 or greater than 100. If it was, I printed a message and used continue to skip the rest of the loop and ask for a new guess.  
+    Next, I used a main if, elif, and else series to handle the game logic:  
+    For the if: I checked if the guess was equal to the secret_number. If it was, the user won. I printed a "Well done!" message, showed them the number and how many attempts it took, and then used the break command to exit the while loop and end the game.  
+    For the elif: I checked if the guess was less than the secret_number. If it was, I printed "Try Higher!" and also showed them how many tries they had left.  
+    For the else: This automatically catches any guess that is greater than the secret_number. It prints "Try Lower!" and the number of remaining tries.  
+    The except ValueError: part of my try...except block just prints an error message if the user types invalid input.  
+    Finally, I used a special feature by adding an else block to the while loop itself. This else block only runs if the loop finishes without a break. This is the "lose" condition. If the user runs out of tries, this block prints "GAME OVER" and tells them what the secret_number was.  
   
 Project 3 - Rock, Paper, Scissors, Lizard, Spock  
-    I started by greating the user and explain that we are going to be playing this game.  
-    the First thing i set up was the import random after that i Start by defining the player and computer scores, the number of rounds needed to win and the round counter.  
-    I define the choices and win conditions, then i use a while loop for the game and if, elif and else stamentes to see who wins or if its a draw. after the all the rounds are done i also use a if else to show who wins.
-
+   I started by outlining the goal in the comments: to create a "best of 5" game of Rock, Paper, Scissors, Lizard, Spock. To do this, I first had to import random so the computer could choose its move.  
+    I used several print statements to welcome the user and explain the rules. I set it up as a "best of 5" game, clarifying that the first player to get 3 wins would be the overall winner. I also created a multi-line string variable called rules and printed it, showing the full "Big Bang Theory" explanation of what beats what. To set up the game state, I created variables for the player_score and computer_score, setting them both to 0. I also made a rounds_to_win variable and set it to 3.  
+    For the game's core logic, I first created a list called choices that holds all the valid string inputs. Then, I created a dictionary called win_conditions. In this dictionary, each key is a move (like "rock") and its value is a list of the moves it beats (e.g., ["scissors", "lizard"]).  
+    I put the entire game inside a main while loop. This loop keeps running as long as the player_score is less than rounds_to_win and the computer_score is also less than rounds_to_win.  
+    Inside this loop, I first increment the round_counter and print the current round and score. Then, I used random.choice(choices) to get the computer_choice and stored it in a variable. I used input to ask the user for their move and used .lower() to make sure the case matched.  
+    I added an if statement right after to handle validation. I checked if the player_choice was not in my choices list. If it was invalid, I printed an error and used the continue command to skip the rest of the loop and start the round over.  
+    To determine the winner of the round, I used an if, elif, else block:  
+    First, the if statement checks if player_choice is equal to computer_choice. If it is, I print "It's a draw!".  
+    Next, the elif statement was my logic for the player winning. I used the player_choice as a key to get the list from my win_conditions dictionary and checked if that resulting list was equal to the computer_choice string. If it matched, I printed "You win!" and added 1 to the player_score.  
+    Finally, the else block catches all other outcomes. This means the computer won, so I print a "Computer Won" message and add 1 to the computer_score.  
+    After the while loop finishes (meaning one player has reached 3 wins), I print the final score and a "GAME OVER!" message.  
+    I used one last if/else statement to check if the player_score was greater than the computer_score. This determines who is the overall winner, and I print a final congratulations or "Better luck next time" message.  
+      
 Day 2:  
 Project 4 - Hangman  
   I started by greeting the user and explaining the rules of the game, such as having 6 tries and guessing one letter at a time.  
@@ -43,3 +70,15 @@ Project 5 - To Do List
     For choice '3', I first show the user all the tasks again so they can see the numbers. I used a `try...except` block to make sure the user enters a valid number. If they do, I use their input (minus 1, to get the correct list index) to find the task in the `tasks` list and set its 'completed' value to `True`.  
     For choice '4', I just print a goodbye message and use the `break` command to exit the `while True` loop, which ends the program.  
     Finally, an `else` statement at the end catches any invalid menu choices and prompts the user to try again.  
+  
+Day 3:  
+Project 5 - to do list v2  
+    To create to_do_list-v2.py, I started by taking all the logic that was grouped inside the single while True loop and refactoring it by organizing it into functions. This makes the code much cleaner and easier to read.  
+    I created a main function that now holds the empty tasks list and the main while True loop. This main function is now the central part of the program.  
+    Inside the main loop, I first call a new function I made, show_menu(), which just handles printing the 4 options for the user.
+    The if, elif, and else statements that check the user's choice are still inside the while True loop, but now they are much simpler. Instead of containing all the logic, they just call other new functions based on the choice.  
+    For choice '1', the loop now calls view_task(tasks). I moved all the logic for checking if the tasks list is empty and the for loop with enumerate into this new function. I have to pass the tasks list to it as an argument so it knows what to print.  
+    For choice '2', it calls add_task(tasks). This function now handles getting the input for the new task description, creating the new task dictionary, and appending it to the tasks list.  
+    For choice '3', it calls mark_task_complete(tasks). This is a big improvement. Instead of having to copy and paste the code to print all the tasks, this function can now just call view_task(tasks) first. After that, it uses the same try...except block as before to get the task number and set its "completed" value to True.  
+    For choice '4', the break command and the final else statement for invalid choices remained inside the main loop's while True, as they control the loop itself.  
+    Finally, at the very end of the file, I added an if __name__ == "__main__": block. This is a standard Python practice that tells the script to run the main() function only when the file is executed directly.
